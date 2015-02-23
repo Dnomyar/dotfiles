@@ -1,0 +1,9 @@
+xss-lock -- xscreensaver-command -lock &
+
+stalonetray &
+
+if [ -x /usr/bin/nm-applet ] ; then
+   nm-applet --sm-disable &
+fi
+
+xmonad
