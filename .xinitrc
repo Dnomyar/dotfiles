@@ -6,6 +6,8 @@ xsetroot -cursor_name left_ptr
 # Backgroud screen
 feh --bg-scale ~/wallpepper.jpg
 
+# Azerty
+setxkbmap fr
 
 # Désactiver touchpad
 /home/damien/.xmonad/touchpadHandler.sh

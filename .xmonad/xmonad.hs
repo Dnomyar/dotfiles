@@ -173,7 +173,7 @@ myConfig = defaultConfig {
         , ((mod4Mask, xK_l), spawn "xscreensaver-command --lock")
         , ((mod4Mask, xK_t), spawn "./.xmonad/touchpadHandler.sh")
         , ((mod4Mask, xK_f), spawn "firefox &")
-        , ((mod4Mask, xK_s), spawn "sublime_text &")
+        , ((mod4Mask, xK_s), spawn "subl &")
         , ((mod4Mask, xK_a), spawn "atom &")
         , ((mod4Mask, xK_i), spawn "idea.sh &")
         , ((mod4Mask .|. shiftMask, xK_q), spawn "systemctl poweroff")
