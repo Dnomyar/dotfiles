@@ -147,6 +147,8 @@ if [[ "$searchE" = "search eduroam-etu.univ-nantes.prive" ]]; then
     echo ">>> IUT Eduroam wifi proxy environment"
 fi
 
+# mount hdd
+alias mm='sudo ntfs-3g /dev/sdb1 media'
 
 ##Set some keybindings
 ###############################################
