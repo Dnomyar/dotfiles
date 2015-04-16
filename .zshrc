@@ -130,6 +130,11 @@ if [[ "$domain" = "domain ca.cite-u.univ-nantes.prive" ]]; then
     source ~/proxy/citeu.sh
     echo ">>> Cité U proxy environment"
 fi
+searchC=$(cat /etc/resolv.conf | grep search)
+if [[ "$searchC" = "search ca.cite-u.univ-nantes.prive" ]]; then
+    source ~/proxy/citeu.sh
+    echo ">>> Cité U proxy environment"
+fi
 search=$(cat /etc/resolv.conf | grep search)
 if [[ "$search" = "search jof.wifi.univ-nantes.prive" ]]; then
     source ~/proxy/iut-wifi.sh
