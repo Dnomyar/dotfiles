@@ -21,6 +21,8 @@ export NIP=E134038T
 
 ssh-agent /bin/bash &
 
+# Start REDSHIFT
+redshift-gtk -l 47.21:-1.55 &
 
 stalonetray &
 
