@@ -27,7 +27,7 @@ function extract() {
 
 
 # Open a file with the appropriate application
-function open {
+function o {
     while [ "$1" ] ; do
         xdg-open $1 &> /dev/null
         shift # shift décale les param
