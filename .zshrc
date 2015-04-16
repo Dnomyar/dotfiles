@@ -112,6 +112,11 @@ alias lstree="find . | sed 's/[^/]*\//| /g;s/| *\([^| ]\)/+--- \1/'"
 alias ff='firefox'
 alias s='subl3'
 
+# Etendre écran à gauche
+alias screenleft='xrandr --output VGA1 --mode 1024x768 --rate 60 --left-of LVDS1'
+# Etandre écran à droite
+alias screenright='xrandr --output VGA1 --mode 1024x768 --rate 60 --right-of LVDS1'
+
 function igpg {
     filename=$1
     gpg --output /tmp/68f4bfe307a5bc157f2deb82f2d79f9a233f41b1 --decrypt ${filename} && cat /tmp/68f4bfe307a5bc157f2deb82f2d79f9a233f41b1
