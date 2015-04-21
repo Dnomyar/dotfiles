@@ -121,6 +121,7 @@ myManageHook = composeAll . concat $
         [ className =? "Firefox" --> viewShift "web"]
         , [ className =? "Sublime_text" --> viewShift "code"]
         , [ className =? "idea.sh" --> viewShift "code"]
+        , [ className =? "idea" --> viewShift "code"]
     ]
     where
         viewShift = doF . liftM2 (.) W.greedyView W.shift
@@ -185,7 +186,7 @@ myConfig = defaultConfig {
         , ((mod4Mask, xK_f), spawn "firefox &")
         , ((mod4Mask, xK_s), spawn "subl &")
         , ((mod4Mask, xK_a), spawn "atom &")
-        , ((mod4Mask, xK_i), spawn "idea.sh &")
+        , ((mod4Mask, xK_i), spawn "idea &")
         , ((mod4Mask .|. shiftMask, xK_q), spawn "systemctl poweroff")
 
 
@@ -206,4 +207,7 @@ myConfig = defaultConfig {
 
         --, ((mod1Mask, Next), spawn "xbacklight -10")
         --, ((mod1Mask, XF86MonBrightnessDown), spawn "xbacklight +10")
+
+
+
     ]
