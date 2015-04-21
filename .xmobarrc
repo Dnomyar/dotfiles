@@ -28,17 +28,19 @@ position = TopW L 98,
 -- presentation in the bar.
 commands = [
 	-- Gather and format CPU usage information.
-	-- If it's above 50%, we consider it high usage and make it red.
+	-- If it's above 50%, we consider it high usage and make it #FFB6B0.
 	Run Cpu [
+	"-t","Cpu: <total> -",
 	"-L", "3",
 	"-H", "50",
-	"--normal", "green",
-	"--high","red"
+	"-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"
 	]
 	10,
 
-	Run Network "enp2s0" ["-L","0","-H","32","--normal","green","--high","red"] 10,
-	Run Network "wlp3s0b1" ["-L","0","-H","32","--normal","green","--high","red"] 10,
+	Run MultiCpu ["-t","<total0><total1><total2><total3>","-L","30","-H","60","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC","-w","3"] 10,
+
+	Run Network "enp2s0" ["-L","0","-H","32","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"] 10,
+	Run Network "wlp3s0b1" ["-L","0","-H","32","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"] 10,
 
 	--Run Brightness ["-t", ""] 60,
 
@@ -60,8 +62,8 @@ commands = [
 	--"-c", "charge_full",
 	"-O", "AC",
 	"-o", "Bat",
-	"-h", "green",
-	"-l", "red"
+	"-h", "#CEFFAC",
+	"-l", "#FFB6B0"
 	] 10,
 	-- To get volume information, we run a custom bash script.
 	-- This is because the built-in volume support in xmobar is disabled
@@ -96,7 +98,8 @@ alignSep = "}{",
 -- Overall template for the layout of the xmobar contents. Note that
 -- space is significant and can be used to add padding.
 -- template = "%StdinReader% }{ %battery% | %cpu% | %memory% | Vol: %myvolume% <fc=#e6744c>%date%</fc> "
-template = "%StdinReader% }{ %enp2s0%%wlp3s0b1% | %battery% | %cpu% | %memory% | %myvolume% | Lum: %mybright% | <fc=#e6744c>%date%</fc>"
+--template = "%StdinReader% }{ %enp2s0%%wlp3s0b1% | %battery% | %cpu% | %memory% | %myvolume% | Lum: %mybright% | <fc=#e6744c>%date%</fc>"
+template = "%StdinReader% }{ %enp2s0%%wlp3s0b1% | %battery% | %cpu%%multicpu% | %memory% | %myvolume% | Lum: %mybright% | <fc=#e6744c>%date%</fc>"
 }
 
 --Config { font = "-xos4-terminus-bold-r-normal--20-*-*-*-*-*-iso10646-1"
@@ -106,9 +109,9 @@ template = "%StdinReader% }{ %enp2s0%%wlp3s0b1% | %battery% | %cpu% | %memory% |
 --       , lowerOnStart = True
 --       , commands = [ Run Weather "LFRS" ["-t","<station>: <tempC>C / <rh>%","-L","18","-H","25","--normal","#00CC00","--high","#CC0000","--low","lightblue"] 36000
 --                    , Run Network "eth0" ["-L","0","-H","32","--normal","#00CC00","--high","#CC0000"] 10
---                    , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+--                    , Run Cpu ["-L","3","-H","50","--normal","#CEFFAC","--high","#FFB6B0"] 10
 --                    , Run Memory ["-t","Mem: <usedratio>%"] 10
---                    , Run Battery ["-t","<timeleft>","-L","50","-H","75","-h","green","-n","yell","-l","red"] 10
+--                    , Run Battery ["-t","<timeleft>","-L","50","-H","75","-h","#CEFFAC","-n","yell","-l","#FFB6B0"] 10
 --                    --, Run Battery ["--", "-c", "energy_full"] 30
 --        , Run Date "%k:%M:%S" "date" 10
 --        , Run Com "date" ["+'%a %d %b'"] "mydate" 600
