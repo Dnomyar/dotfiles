@@ -182,8 +182,8 @@ myConfig = defaultConfig {
         , ((0, 0x1008ff13), spawn "amixer set Master 2+ unmute")   -- XF86AudioRaiseVolume
 
         -- Take screenshot
-        , ((0, xK_Print), spawn "scrot ~/screenshots/%Y-%m-%d-%T-screenshot.png")
-        , ((mod1Mask, xK_Print), spawn "sleep 0.2; scrot -s ~/screenshots/%Y-%m-%d-%T-screenshot.png")
+        , ((0, xK_Print), spawn "scrot ~/screenshots/%Y-%m-%d-%T-screenshot.png") -- All screen
+        , ((mod1Mask, xK_Print), spawn "sleep 0.2; scrot -s ~/screenshots/%Y-%m-%d-%T-screenshot.png") -- Selected part of the screen
 
 
         -- Brightness
