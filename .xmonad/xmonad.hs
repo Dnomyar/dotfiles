@@ -183,6 +183,8 @@ myConfig = defaultConfig {
 
         -- Take screenshot
         , ((0, xK_Print), spawn "scrot ~/screenshots/%Y-%m-%d-%T-screenshot.png")
+        , ((mod1Mask, xK_Print), spawn "sleep 0.2; scrot -s ~/screenshots/%Y-%m-%d-%T-screenshot.png")
+
 
         -- Brightness
         , ((mod1Mask .|. shiftMask, xK_Up), spawn "xbacklight -inc 5")
