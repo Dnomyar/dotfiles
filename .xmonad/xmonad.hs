@@ -177,8 +177,17 @@ myConfig = defaultConfig {
         , ((mod1Mask .|. shiftMask, xK_Right), spawn "amixer set Master 2+ unmute")
 
 
+        , ((0, 0x1008ff11), spawn "amixer set Master 2- unmute")   -- XF86AudioLowerVolume
+        , ((0, 0x1008ff13), spawn "amixer set Master 2+ unmute")   -- XF86AudioRaiseVolume
+
+        -- Take screenshot
+        , ((0, xK_Print), spawn "scrot ~/screenshots/%Y-%m-%d-%T-screenshot.png")
+
+        -- Brightness
         , ((mod1Mask .|. shiftMask, xK_Up), spawn "xbacklight -inc 5")
         , ((mod1Mask .|. shiftMask, xK_Down), spawn "xbacklight -dec 5")
+        , ((0, 0x1008ff02), spawn "xbacklight -inc 5")
+        , ((0, 0x1008ff03), spawn "xbacklight -dec 5")
 
         --, ((mod4Mask, xK_l), spawn "systemctl suspend")
         , ((mod4Mask, xK_l), spawn "xscreensaver-command --lock")
