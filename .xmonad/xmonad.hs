@@ -50,7 +50,17 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         -- , ((modm, xF86XK_MonBrightnessDown) spawn "xbacklight +10")
         --, ((mod4Mask, xK_Right), spawn "amixer set Master 5%- unmute &")
         --, ((mod4Mask, xK_Left), spawn "amixer set Master 5%+ unmute &")
+        -- mod-[1..9], Switch to workspace N
+        -- mod-shift-[1..9], Move client to workspace N
+        --
     ]
+
+    ++
+    -- mod-[1..9] %! Switch to workspace N
+    -- mod-shift-[1..9] %! Move client to workspace N
+    [((modm .|. m, k), windows $ f i)
+    | (i, k) <- zip myWorkspaces [xK_F1 .. xK_F6]
+    , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
 
 --myKeys =
 --    -- volume key binding
