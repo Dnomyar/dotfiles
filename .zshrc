@@ -111,11 +111,13 @@ alias lstree="find . | sed 's/[^/]*\//| /g;s/| *\([^| ]\)/+--- \1/'"
 
 alias ff='firefox'
 alias s='subl3'
+alias code="visual-studio-code"
 
 # Etendre écran à gauche
-alias screenleft='xrandr --output VGA1 --mode 1024x768 --rate 60 --left-of LVDS1'
+alias screenleft='xrandr --output VGA1 --mode 1440x900 --rate 60 --left-of LVDS1'
 # Etandre écran à droite
-alias screenright='xrandr --output VGA1 --mode 1024x768 --rate 60 --right-of LVDS1'
+alias screenright='xrandr --output VGA1 --mode 1440x900 --rate 60 --right-of LVDS1'
+alias screenoff='xrandr --output VGA1 --off'
 
 function igpg {
     filename=$1
@@ -132,6 +134,11 @@ if [[ "$domain" = "domain ca.cite-u.univ-nantes.prive" ]]; then
 fi
 searchC=$(cat /etc/resolv.conf | grep search)
 if [[ "$searchC" = "search ca.cite-u.univ-nantes.prive" ]]; then
+    source ~/proxy/citeu.sh
+    echo ">>> Cité U proxy environment"
+fi
+searchCB=$(cat /etc/resolv.conf | grep search)
+if [[ "$searchC" = "search bg.cite-u.univ-nantes.prive" ]]; then
     source ~/proxy/citeu.sh
     echo ">>> Cité U proxy environment"
 fi
