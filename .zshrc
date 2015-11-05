@@ -1,7 +1,7 @@
 #/bin/shell
 
 
-source /home/damien/.zsh/zsh-git-prompt/zshrc.sh
+source ~/.zsh/zsh-git-prompt/zshrc.sh
 
 # https://github.com/rpellerin/dotfiles/blob/master/.aliases
 # Extract any archive
@@ -91,17 +91,17 @@ function githelp {
 }
 
 function custom_cd () {
-    \cd "$@" && ls --color=auto -laAh
+    cd "$@" && ls -GlaAh
 }
 
 
 # Alias
-alias ls='ls -Ah --color=auto'
-alias l="ls --color=auto -laAh"
+alias ls='ls -AhG'
+alias l="ls -GlaAh"
 alias grep='grep -i --color=auto'
-alias rm='rm --interactive --verbose'
-alias mv='mv --interactive --verbose'
-alias cp='cp -R --verbose'
+alias rm='rm -vi'
+alias mv='mv -vi'
+alias cp='cp -Rv'
 alias mkdir='mkdir -p'
 alias ...='../..'
 alias ..='cd ..'
@@ -112,6 +112,8 @@ alias lstree="find . | sed 's/[^/]*\//| /g;s/| *\([^| ]\)/+--- \1/'"
 alias ff='firefox'
 alias s='subl3'
 alias code="visual-studio-code"
+alias sha256="shasum -a 256"
+alias wiresharkk="sudo chmod 644 /dev/bpf* && wireshark"
 
 # Etendre écran à gauche
 alias screenleft='xrandr --output VGA1 --mode 1440x900 --rate 60 --left-of LVDS1'
