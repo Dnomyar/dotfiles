@@ -162,10 +162,16 @@ alias mm='sudo ntfs-3g /dev/sdb1 media'
 typeset -g -A key
 bindkey '^?' backward-delete-char
 bindkey '^[[7~' beginning-of-line
-bindkey '^[[5~' up-line-or-history
+
+#bindkey '^[[5~' up-line-or-history
+bindkey "^[[5~" history-beginning-search-backward
+
 bindkey '^[[3~' delete-char
 bindkey '^[[8~' end-of-line
-bindkey '^[[6~' down-line-or-history
+
+#bindkey '^[[6~' down-line-or-history
+bindkey "^[[6~" history-beginning-search-forward
+
 bindkey '^[[A' up-line-or-search
 bindkey '^[[D' backward-char
 bindkey '^[[B' down-line-or-search
