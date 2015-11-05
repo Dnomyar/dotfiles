@@ -127,32 +127,32 @@ function igpg {
 # bindkey '~' beginning-of-line # Home (console)
 # bindkey '9~' '~' # Home (console)
 
-domain=$(cat /etc/resolv.conf | grep domain)
-if [[ "$domain" = "domain ca.cite-u.univ-nantes.prive" ]]; then
-    source ~/proxy/citeu.sh
-    echo ">>> Cité U proxy environment"
-fi
-searchC=$(cat /etc/resolv.conf | grep search)
-if [[ "$searchC" = "search ca.cite-u.univ-nantes.prive" ]]; then
-    source ~/proxy/citeu.sh
-    echo ">>> Cité U proxy environment"
-fi
-searchCB=$(cat /etc/resolv.conf | grep search)
-if [[ "$searchC" = "search bg.cite-u.univ-nantes.prive" ]]; then
-    source ~/proxy/citeu.sh
-    echo ">>> Cité U proxy environment"
-fi
-search=$(cat /etc/resolv.conf | grep search)
-if [[ "$search" = "search jof.wifi.univ-nantes.prive" ]]; then
-    source ~/proxy/iut-wifi.sh
-    echo ">>> IUT wifi proxy environment"
-fi
+# domain=$(cat /etc/resolv.conf | grep domain)
+# if [[ "$domain" = "domain ca.cite-u.univ-nantes.prive" ]]; then
+#     source ~/proxy/citeu.sh
+#     echo ">>> Cité U proxy environment"
+# fi
+# searchC=$(cat /etc/resolv.conf | grep search)
+# if [[ "$searchC" = "search ca.cite-u.univ-nantes.prive" ]]; then
+#     source ~/proxy/citeu.sh
+#     echo ">>> Cité U proxy environment"
+# fi
+# searchCB=$(cat /etc/resolv.conf | grep search)
+# if [[ "$searchC" = "search bg.cite-u.univ-nantes.prive" ]]; then
+#     source ~/proxy/citeu.sh
+#     echo ">>> Cité U proxy environment"
+# fi
+# search=$(cat /etc/resolv.conf | grep search)
+# if [[ "$search" = "search jof.wifi.univ-nantes.prive" ]]; then
+#     source ~/proxy/iut-wifi.sh
+#     echo ">>> IUT wifi proxy environment"
+# fi
 
-searchE=$(cat /etc/resolv.conf | grep search)
-if [[ "$searchE" = "search eduroam-etu.univ-nantes.prive" ]]; then
-    source ~/proxy/iut.sh
-    echo ">>> IUT Eduroam wifi proxy environment"
-fi
+# searchE=$(cat /etc/resolv.conf | grep search)
+# if [[ "$searchE" = "search eduroam-etu.univ-nantes.prive" ]]; then
+#     source ~/proxy/iut.sh
+#     echo ">>> IUT Eduroam wifi proxy environment"
+# fi
 
 # mount hdd
 alias mm='sudo ntfs-3g /dev/sdb1 media'
