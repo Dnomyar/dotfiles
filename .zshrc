@@ -1,7 +1,93 @@
-#/bin/shell
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/damien/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git colored-man brew osx zsh-syntax-highlighting boot2docker cabal sbt colorize bower chucknorris mvn scala sudo docker z) 
+
+# User configuration
+
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin:/home/damien/activator:/usr/local/sbin:/Users/damien/bin/stack-1.0.4-osx-x86_64:/Users/damien/.local/bin:/Users/damien/.cabal/bin"
+# export MANPATH="/usr/local/man:$MANPATH"
+
+source $ZSH/oh-my-zsh.sh
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-source ~/.zsh/zsh-git-prompt/zshrc.sh
+
+
+
+#source ~/.zsh/zsh-git-prompt/zshrc.sh
 
 # https://github.com/rpellerin/dotfiles/blob/master/.aliases
 # Extract any archive
@@ -24,16 +110,6 @@ function extract() {
         echo "'$1' is not a valid file"
     fi
 }
-
-
-# Open a file with the appropriate application
-function o {
-    while [ "$1" ] ; do
-        xdg-open $1 &> /dev/null
-        shift # shift décale les param
-    done
-}
-
 
 # A reminder
 function githelp {
@@ -109,88 +185,57 @@ alias path='echo $PATH | tr -s ":" "\n"'
 alias cd='custom_cd'
 alias lstree="find . | sed 's/[^/]*\//| /g;s/| *\([^| ]\)/+--- \1/'"
 
-alias ff='firefox'
-alias s='subl3'
-alias code="visual-studio-code"
+# alias code="visual-studio-code"
 alias sha256="shasum -a 256"
 alias wiresharkk="sudo chmod 644 /dev/bpf* && wireshark"
+alias redis.start="redis-server /usr/local/etc/redis.conf"
+alias pg.start="postgres -D /usr/local/var/postgres"
+alias composer='docker run -ti --rm -v $(pwd):/app composer/composer'
 
-# Etendre écran à gauche
-alias screenleft='xrandr --output VGA1 --mode 1440x900 --rate 60 --left-of LVDS1'
-# Etandre écran à droite
-alias screenright='xrandr --output VGA1 --mode 1440x900 --rate 60 --right-of LVDS1'
-alias screenoff='xrandr --output VGA1 --off'
+function readFromYT () {
+    /Applications/VLC.app/Contents/MacOS/VLC "$(yturl $@ -q high)"
+}
+alias yt='readFromYT'
 
-function igpg {
-    filename=$1
-    gpg --output /tmp/68f4bfe307a5bc157f2deb82f2d79f9a233f41b1 --decrypt ${filename} && cat /tmp/68f4bfe307a5bc157f2deb82f2d79f9a233f41b1
+
+# Git
+function gcob () {
+    if [ -z $1 ] ; then
+	echo "Bad usage: 'gcob <branch name>'"
+    else
+        git checkout -b $1
+    fi
 }
 
-# bindkey '~' beginning-of-line # Home (console)
-# bindkey '9~' '~' # Home (console)
+function gfeat () {
+    if [ -z $1 ] ; then
+        echo "Bad usage: 'gfeat <feature branch name>' (this will create a branch name 'feature/<branch name>)"
+    else
+        git checkout -b feature/$1
+    fi
+}
 
-# domain=$(cat /etc/resolv.conf | grep domain)
-# if [[ "$domain" = "domain ca.cite-u.univ-nantes.prive" ]]; then
-#     source ~/proxy/citeu.sh
-#     echo ">>> Cité U proxy environment"
-# fi
-# searchC=$(cat /etc/resolv.conf | grep search)
-# if [[ "$searchC" = "search ca.cite-u.univ-nantes.prive" ]]; then
-#     source ~/proxy/citeu.sh
-#     echo ">>> Cité U proxy environment"
-# fi
-# searchCB=$(cat /etc/resolv.conf | grep search)
-# if [[ "$searchC" = "search bg.cite-u.univ-nantes.prive" ]]; then
-#     source ~/proxy/citeu.sh
-#     echo ">>> Cité U proxy environment"
-# fi
-# search=$(cat /etc/resolv.conf | grep search)
-# if [[ "$search" = "search jof.wifi.univ-nantes.prive" ]]; then
-#     source ~/proxy/iut-wifi.sh
-#     echo ">>> IUT wifi proxy environment"
-# fi
+function gcm () {
+    if [ -z $1 ] ; then
+        echo "Bad usage: 'gcm <commit message>'"
+    else
+        git commit -m $1
+    fi
+}
 
-# searchE=$(cat /etc/resolv.conf | grep search)
-# if [[ "$searchE" = "search eduroam-etu.univ-nantes.prive" ]]; then
-#     source ~/proxy/iut.sh
-#     echo ">>> IUT Eduroam wifi proxy environment"
-# fi
 
-# mount hdd
-alias mm='sudo ntfs-3g /dev/sdb1 media'
-
-##Set some keybindings
-###############################################
-typeset -g -A key
-bindkey '^?' backward-delete-char
-bindkey '^[[7~' beginning-of-line
-
-#bindkey '^[[5~' up-line-or-history
-bindkey "^[[5~" history-beginning-search-backward
-
-bindkey '^[[3~' delete-char
-bindkey '^[[8~' end-of-line
-
-#bindkey '^[[6~' down-line-or-history
-bindkey "^[[6~" history-beginning-search-forward
-
-bindkey '^[[A' up-line-or-search
-bindkey '^[[D' backward-char
-bindkey '^[[B' down-line-or-search
-bindkey '^[[C' forward-char
-bindkey '^[[2~' overwrite-mode
 #################################################
 
 UTILISATEUR=%n
 # THIS_DIRECTORY=%~
 THIS_DIRECTORY=%c
 
-GIT_PROMPT_EXECUTABLE="haskell"
+#GIT_PROMPT_EXECUTABLE="haskell"
 
 # PROMPT="${UTILISATEUR} | ${THIS_DIRECTORY} $ "
 # PROMPT='%B%m | %c%b$(git_super_status) $ '
-PROMPT='%{$fg[magenta]%}%B%m%b%{$reset_color%} | %c %B%{$fg[green]%}$%{$reset_color%}%b '
-RPROMPT='$(git_super_status)'
+#PROMPT='%{$fg[magenta]%}%B%m%b%{$reset_color%} | %c %B%{$fg[green]%}$%{$reset_color%}%b '
+#RPROMPT='$(git_super_status)'
 
 # enable colored output from ls, etc
 export CLICOLOR=1
@@ -204,4 +249,16 @@ promptinit
 
 
 
+setopt append_history # append rather then overwrite
+setopt extended_history # save timestamp
+setopt inc_append_history # add history immediately after typing a command
 
+ssh-add ~/.ssh/id_perso
+ssh-add ~/.ssh/id_noeupapp
+
+chuck | cowsay 
+
+export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
+export PATH="/usr/local/opt/node@6/bin:$PATH"
+
+export TERM="xterm-256color"
